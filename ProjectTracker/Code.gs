@@ -15,9 +15,7 @@ function setDefaultCompletedValue() {
 }
 
 function onAssigneeChange(e) {
-  console.log(e);
-  console.log("Remaining QUota: "+ MailApp.getRemainingDailyQuota());
-  MailApp.sendEmail("nelsontanzuxuan@gmail.com","HAHAHA","HAHAHA")
+
   var sheetName = "Form Responses 1";
   var spreadsheetId = "1VXYBfgkbLyicINChPBk7vPlSq5n4YJstg5yw-1oJfU4";
   var sheetName = "Form Responses 1"; 
@@ -41,20 +39,11 @@ function onAssigneeChange(e) {
       var projectEndDate = new Date(rowData[6]);
       var assignerEmail = rowData[11]; // Assuming Assigner Email is in the 12th column (index 11)
 
-      console.log("Entered");
-      console.log(taskName);
-      console.log(description);
-
       var employeeRolesSpreadsheetId = "1YZw49tSd8eoB-UR1xaEJrce4YvM1e1SXdg80_DMJZFc";
       var rolesSheet = SpreadsheetApp.openById(employeeRolesSpreadsheetId).getSheetByName("Sheet1");
 
-      console.log("YERE")
-      console.log(rolesSheet);
       var rolesData = rolesSheet.getDataRange().getValues();
 
-      console.log("Entered!!")
-      console.log(rolesData);
-      
       var assigneeEmail = '';
       var assigneeName = '';
       for (var j = 1; j < rolesData.length; j++) { 
@@ -80,7 +69,6 @@ function sendEmailToEmployee(email, employeeName, taskName, taskID, assignerEmai
   var subject = "Project "+ taskID+ " Assigned";
   var body = "Dear "+ employeeName +",\n\nYou have been assigned a new project. Your project ID is: " + taskID + ".\nProject Name: "+ taskName + "\nProject Description: "+ description +"\n\nBest regards,\n"+ assignerEmail;
   Logger.log("Sending email to: " + email);
-  // MailApp.sendEmail(email, "Herre", "LOLO");
   MailApp.sendEmail(email, subject, body);
 }
 
@@ -89,8 +77,6 @@ function createCalendarEvent(email, employeeName, projectID, projectEndDate) {
   var calendar = CalendarApp.getDefaultCalendar();
   var eventTitle = "Project Deadline: " + projectID;
   var eventDescription = "Dear "+ employeeName+",\n\nYou have been assigned a new project. Your project ID is: " + projectID + ".\nThe project deadline is: " + projectEndDate + ".\n\nBest regards,\nThe Company";
-
-  console.log(eventDescription);
 
   calendar.createEvent(eventTitle, new Date(projectEndDate), new Date(projectEndDate), {
     description: eventDescription,
