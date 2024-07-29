@@ -72,7 +72,6 @@ function sendEmailToEmployee(email, employeeName, taskName, taskID, assignerEmai
   MailApp.sendEmail(email, subject, body);
 }
 
-//Create a Calendar Event for Employee to notify their deadlines
 function createCalendarEvent(email, employeeName, projectID, projectEndDate) {
   var calendar = CalendarApp.getDefaultCalendar();
   var eventTitle = "Project Deadline: " + projectID;
@@ -91,7 +90,6 @@ function testOnAssigneeChange() {
   var sheetName = "Form Responses 1";
   var sheet = SpreadsheetApp.openById(spreadsheetId).getSheetByName(sheetName);
   
-  // Define the row where Assignee ID was added
   var editedRow = sheet.getLastRow(); 
 
   var e = {
