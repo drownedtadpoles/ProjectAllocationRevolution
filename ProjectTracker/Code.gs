@@ -89,7 +89,6 @@ function testOnAssigneeChange() {
   var spreadsheetId = "1VXYBfgkbLyicINChPBk7vPlSq5n4YJstg5yw-1oJfU4";
   var sheetName = "Form Responses 1";
   var sheet = SpreadsheetApp.openById(spreadsheetId).getSheetByName(sheetName);
-  
   var editedRow = sheet.getLastRow(); 
 
   var e = {
